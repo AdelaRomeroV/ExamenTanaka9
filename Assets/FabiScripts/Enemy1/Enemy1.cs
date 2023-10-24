@@ -6,11 +6,18 @@ public class Enemy1 : MonoBehaviour
 {
     public int life;
     public float speed;
+    private float originalSpeed;
     public Vector2 direction;
     public Rigidbody2D rb2d;
+    public float timer;
+    public float Maxtimer;
+
+    public float MaxStopTimer;
 
     private void Awake()
     {
+        originalSpeed = speed;   //valor velocidad original
+
         rb2d= GetComponent<Rigidbody2D>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -43,7 +50,18 @@ public class Enemy1 : MonoBehaviour
     }
     void ChangeDirection()
     {
+        timer+= Time.deltaTime;
+        if(timer >= Maxtimer) 
+        {
+            speed = 0;   //La velocidad se vuelve 0
+            if (timer >= MaxStopTimer)
+            {
+                direction *= -1;
+                timer = 0;
+                speed = originalSpeed;   //regresar a la velocidad original
+            }
 
+        }
     }
-
+    
 }
