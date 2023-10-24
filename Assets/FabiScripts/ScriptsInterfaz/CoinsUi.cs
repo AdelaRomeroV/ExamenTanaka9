@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CoinsUi : MonoBehaviour
 {
-
-    void Start()
+    public TMP_Text coinText;
+    void Awake()
     {
-        
+        coinText = GetComponent<TMP_Text>();
     }
 
-    void Update()
+    void UpdateText(int value)
     {
-        
+        coinText.text = "Coin: " + value;
     }
 }
