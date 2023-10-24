@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class Player : MonoBehaviour
     private Vector2 direction;
 
     public float life;
+
+    public int coins;
+    public CoinsUi coinsUi;
 
     private void Awake()
     {
@@ -72,4 +76,23 @@ public class Player : MonoBehaviour
             }
         }
     }*/
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            coins++;
+
+            if(coins >=10)
+            {
+                GetComponent<ChangeScene>();
+                SceneManager.LoadScene("Victory");
+            }
+        }
+    }
+    private void Start()
+    {
+        coinsUi=GameObject.Find("Moneda (TMP)").GetComponent<CoinsUi>();
+        //coinsUI= Update text(coins);
+    }
+
 }
