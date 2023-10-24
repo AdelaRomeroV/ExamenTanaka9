@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/FabiScripts/MainMenu.unity
     guid: 9a20eed5e5b37984498514d1a0780d5a
   - enabled: 1
+    path: Assets/Scenes/ParaFabi.unity
+    guid: 22f00c8fed10ef340bf875e2d2543dcd
+  - enabled: 1
     path: Assets/FabiScripts/Nivel1.unity
     guid: 4daae08049d16e74f8c5629d367276cb
   - enabled: 1
