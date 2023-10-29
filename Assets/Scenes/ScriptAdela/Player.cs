@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 
     public int coins;
     public CoinsUi coinsUi;
+    public int CoinCounter;
 
     private void Awake()
     {
@@ -78,10 +79,13 @@ public class Player : MonoBehaviour
     }*/
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Coin"))
+        if (collision.gameObject.CompareTag("Coins"))
         {
             coins++;
+            Destroy(collision.gameObject);
 
+            CoinCounter++;
+            coinsUi.UpdateText(CoinCounter);
             if(coins >=10)
             {
                 GetComponent<ChangeScene>();
@@ -91,8 +95,9 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        coinsUi=GameObject.Find("Moneda (TMP)").GetComponent<CoinsUi>();
-        //coinsUI= Update text(coins);
+        coinsUi=GameObject.Find("Moneda(TMP)").GetComponent<CoinsUi>();
+        coinsUi.UpdateText(CoinCounter);
+
     }
 
 }

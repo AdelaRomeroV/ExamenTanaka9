@@ -11,8 +11,9 @@ public class CoinsUi : MonoBehaviour
         coinText = GetComponent<TMP_Text>();
     }
 
-    void UpdateText(int value)
+    public void UpdateText(int value)
     {
         coinText.text = "Coin: " + value;
+
     }
 }
