@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     private Vector2 direction;
 
     public float life;
+    public LifeUi lifeUI;
+    public int LifeCounter;
 
     public int coins;
     public CoinsUi coinsUi;
@@ -64,11 +66,23 @@ public class Player : MonoBehaviour
         }
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            life -= collision.gameObject.GetComponent<Damage>().damage;
+            Destroy(collision.gameObject);
+
+            if (life <= 0)
+            {
+                Destroy(gameObject);
+
+            }
+        }
         if(collision.gameObject.CompareTag("BulletEnemy"))
         {
             life -= collision.gameObject.GetComponent<Damage>().damage;
+            lifeUI.UpdateText(LifeCounter);
             Destroy(collision.gameObject);
 
             if(life <= 0)
@@ -76,9 +90,7 @@ public class Player : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-    }*/
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
+
         if (collision.gameObject.CompareTag("Coins"))
         {
             coins++;
@@ -86,18 +98,21 @@ public class Player : MonoBehaviour
 
             CoinCounter++;
             coinsUi.UpdateText(CoinCounter);
-            if(coins >=10)
+            if (coins >= 10)
             {
                 GetComponent<ChangeScene>();
                 SceneManager.LoadScene("Victory");
             }
         }
     }
+    
     private void Start()
     {
         coinsUi=GameObject.Find("Moneda(TMP)").GetComponent<CoinsUi>();
         coinsUi.UpdateText(CoinCounter);
 
+        lifeUI = GameObject.Find("Life (TMP)").GetComponent<LifeUi>();
+        lifeUI.UpdateText(LifeCounter);
     }
 
 }

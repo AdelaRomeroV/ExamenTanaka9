@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy_2 : MonoBehaviour
 {
-    private float speed;
-    private Rigidbody rb;
+    public float speed;
+    private Rigidbody2D rb2D;
     public Vector2 dir;
 
     public float timer;
@@ -17,7 +17,7 @@ public class Enemy_2 : MonoBehaviour
 
     void Awaka()
     {
-        rb = GetComponent<Rigidbody>();
+        rb2D = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class Enemy_2 : MonoBehaviour
 
     void mov()
     {
-        rb.velocity = dir * speed;
+        rb2D.velocity = dir * speed;
     }
 
     void ChangeDirection()
