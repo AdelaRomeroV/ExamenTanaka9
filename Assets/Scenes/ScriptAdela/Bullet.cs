@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     public float speed;
     private Rigidbody2D rb;
 
+    public float life;
+
     private Vector2 direccion;
     private void Awake()
     {
@@ -15,8 +17,8 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, 2f);
     }
 
-    // Update is called once per frame
-    void Update()
+        // Update is called once per frame
+        void Update()
     {
         rb.velocity = (direccion * speed);
     }

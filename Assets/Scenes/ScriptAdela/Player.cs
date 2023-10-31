@@ -65,20 +65,25 @@ public class Player : MonoBehaviour
 
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            life -= collision.gameObject.GetComponent<Damage>().damage;
-            Destroy(collision.gameObject);
+            life--;
+
+            lifeUI.UpdateText(LifeCounter);
 
             if (life <= 0)
             {
                 Destroy(gameObject);
-
+                GetComponent<ChangeScene>();
+                SceneManager.LoadScene("GameOver");
             }
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
         if(collision.gameObject.CompareTag("BulletEnemy"))
         {
             life -= collision.gameObject.GetComponent<Damage>().damage;
@@ -88,6 +93,9 @@ public class Player : MonoBehaviour
             if(life <= 0)
             {
                 Destroy(gameObject);
+
+                GetComponent<ChangeScene>();
+                SceneManager.LoadScene("GameOver");
             }
         }
 
